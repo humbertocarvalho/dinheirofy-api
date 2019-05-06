@@ -8,14 +8,16 @@ const auth = require('../auth');
 
 module.exports = server => {
   // Register User
-  server.post('/register', (req, res, next) => {
-    const { email, password } = req.body;
+  server.post('/user/register', (req, res, next) => {
+    const { userName, name, email, password } = req.body;
 
     bcrypt.genSalt(10, (err, salt) => {
       bcrypt.hash(password, salt, async (err, hash) => {
         // Hash PasswordCustomer
         try {
           new UserDao().create({
+            userName,
+            name,
             email,
             password: hash
           });
@@ -32,14 +34,12 @@ module.exports = server => {
   });
 
   // Auth User
-  server.post('/auth', async (req, res, next) => {
-    const { email, password } = req.body;
-    console.log('email', email);
-    console.log('password', password);
+  server.post('/user/auth', async (req, res, next) => {
+    const { userName, password } = req.body;
 
     try {
       // Authenticate User
-      const user = await auth.authenticate(email, password);
+      const user = await auth.authenticate(userName, password);
 
       // Create JWT
       const token = jwt.sign(user.toJSON(), config.JWT_SECRET, {
@@ -49,12 +49,19 @@ module.exports = server => {
       const { iat, exp } = jwt.decode(token);
 
       // Respond with token
-      res.set('x-access-token', token);
+      res.set({ 'x-access-token': token });
       res.send(200, { iat, exp, token });
       next();
     } catch (error) {
       // User unauthorized
       return next(new errors.UnauthorizedError(error));
     }
+  });
+
+  // Verify if username/email had been taken
+  server.get('/user/exists/:username', async (req, res, next) => {
+    const user = await new UserDao().findByUsername(req.params.username);
+    res.json(!!user);
+    next();
   });
 };

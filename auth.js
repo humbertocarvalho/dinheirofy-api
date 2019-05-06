@@ -3,15 +3,15 @@ const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const UserDao = require('./infra/user-dao');
 
-exports.authenticate = (email, password) => {
+exports.authenticate = (userName, password) => {
   return new Promise(async (resolve, reject) => {
     try {
-      // Get user by email
-      const user = await new UserDao().findByEmail(email);
+      // Get user by userName
+      const user = await new UserDao().findByUsername(userName);
 
       // Math Password
       bcrypt.compare(password, user.password, (err, isMatch) => {
-        if (err) throw err;    
+        if (err) throw err;
 
         if (isMatch) {
           resolve(user);
