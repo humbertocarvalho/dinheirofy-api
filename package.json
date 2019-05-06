@@ -18,6 +18,7 @@
     "mongoose": "^5.5.5",
     "mongoose-timestamp": "^0.6.0",
     "restify": "^8.3.1",
+    "restify-cors-middleware": "^1.1.1",
     "restify-errors": "^7.0.0",
     "restify-jwt-community": "^1.0.12"
   },

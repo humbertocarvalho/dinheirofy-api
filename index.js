@@ -1,12 +1,20 @@
 const restify = require('restify');
 const mongoose = require('mongoose');
 const config = require('./config');
-
+const corsMiddleware = require('restify-cors-middleware');
 
 const server = restify.createServer();
 
+const cors = corsMiddleware({
+  origins: ['*'],
+  allowHeaders: ['Authorization'],
+  exposeHeaders: ['Authorization']
+});
+
 // Middleware
 server.use(restify.plugins.bodyParser());
+server.pre(cors.preflight);
+server.use(cors.actual);
 
 // Protect Routes
 // server.use(

@@ -19,7 +19,8 @@ module.exports = server => {
             email,
             password: hash
           });
-          res.send(201);res.set('x-access-token', token);
+          res.send(201);
+          res.set('x-access-token', token);
           next();
         } catch (err) {
           return next(new errors.InternalError(err.message));
@@ -33,6 +34,9 @@ module.exports = server => {
   // Auth User
   server.post('/auth', async (req, res, next) => {
     const { email, password } = req.body;
+    console.log('email', email);
+    console.log('password', password);
+
     try {
       // Authenticate User
       const user = await auth.authenticate(email, password);
