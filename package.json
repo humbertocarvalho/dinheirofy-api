@@ -4,15 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon src/index.ts",
+    "prebuild": "rimraf dist",
+    "build": "sucrase ./src -d ./dist --transforms typescript,imports"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/bcryptjs": "^2.4.2",
     "bcryptjs": "^2.4.3",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.5.5",
@@ -23,6 +22,22 @@
     "restify-jwt-community": "^1.0.12"
   },
   "devDependencies": {
-    "nodemon": "^1.19.0"
+    "@types/bcryptjs": "^2.4.2",
+    "@types/mongoose": "^5.5.0",
+    "@types/restify": "^7.2.10",
+    "@types/restify-errors": "^4.3.3",
+    "@typescript-eslint/eslint-plugin": "^1.8.0",
+    "@typescript-eslint/parser": "^1.8.0",
+    "eslint": "^5.15.3",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "nodemon": "^1.19.0",
+    "sucrase": "^3.10.1",
+    "typescript": "^3.4.5"
   }
 }
