@@ -22,4 +22,4 @@ const CustomerSchema = new Schema({
   timestamps: true
 })
 
-export const Customer: Model<CustomerModel> = model<CustomerModel>('User', CustomerSchema)
+export const Customer: Model<CustomerModel> = model<CustomerModel>('Customer', CustomerSchema)
