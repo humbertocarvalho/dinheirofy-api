@@ -13,7 +13,7 @@ class CustomerRoute {
     this.restify.get('/customers/:id', customerController.selecionar)
     this.restify.post('/customers', rjwt({ secret: config.JWT_SECRET }), customerController.inserir)
     this.restify.put('/customers/:id', rjwt({ secret: config.JWT_SECRET }), customerController.atualizar)
-    this.restify.del('/customers/:id', customerController.deletar)
+    this.restify.del('/customers/:id', rjwt({ secret: config.JWT_SECRET }), customerController.deletar)
   }
 }
 

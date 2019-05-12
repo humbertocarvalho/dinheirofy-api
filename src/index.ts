@@ -12,7 +12,9 @@ class Index {
     this.middlewares()
     this.database()
     this.routes()
-    this.restify.listen(3000)
+    this.restify.listen(3000, (): void => {
+      console.log(`Server started on port ${config.PORT}`)
+    })
   }
 
   private middlewares (): void{
@@ -34,6 +36,7 @@ class Index {
 
   private routes (): void {
     const customerRoute = new CustomerRoute(this.restify)
+    if (customerRoute) console.log('sucesso')
   }
 }
 export default new Index().restify
