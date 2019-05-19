@@ -1,3 +1,20 @@
+import { Server } from 'restify'
+import UserController from '../controllers/user-controller'
+// import config from '../../config'
+// import rjwt from 'restify-jwt-community'
+
+class UserRoute {
+  private restify: Server
+
+  public constructor (server:Server) {
+    this.restify = server
+    const customerController = new UserController()
+    this.restify.post('/user/register', customerController.registrar)
+  }
+}
+
+export default UserRoute
+
 // const errors = require('restify-errors');
 // const bcrypt = require('bcryptjs');
 // const jwt = require('jsonwebtoken');

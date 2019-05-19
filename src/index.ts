@@ -3,6 +3,7 @@ import mongoose from 'mongoose'
 import config from '../config'
 import corsMiddleware from 'restify-cors-middleware'
 import CustomerRoute from './routes/customer'
+import UserRoute from './routes/users'
 
 class Index {
   public restify: restify.Server
@@ -36,7 +37,9 @@ class Index {
 
   private routes (): void {
     const customerRoute = new CustomerRoute(this.restify)
+    const userRoute = new UserRoute(this.restify)
     if (customerRoute) console.log('sucesso')
+    if (userRoute) console.log('sucesso')
   }
 }
 export default new Index().restify
