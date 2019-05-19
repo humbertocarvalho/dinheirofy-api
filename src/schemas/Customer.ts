@@ -1,5 +1,5 @@
 import { Document, Schema, Model, model } from 'mongoose'
-import { CustomerInterface } from '../interfaces/Customer'
+import { CustomerInterface } from '../models/Customer'
 
 export interface CustomerModel extends CustomerInterface, Document{};
 

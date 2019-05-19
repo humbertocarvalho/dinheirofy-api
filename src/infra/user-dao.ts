@@ -1,5 +1,5 @@
 import { User } from '../schemas/User'
-import { UserInterface } from '../interfaces/User'
+import { UserInterface } from '../models/User'
 
 class UserDao {
   public async create (user:UserInterface) : Promise<UserInterface> {
