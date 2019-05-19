@@ -10,6 +10,7 @@ class UserRoute {
     this.restify = server
     const customerController = new UserController()
     this.restify.post('/user/register', customerController.registrar)
+    this.restify.post('/user/auth', customerController.auth)
   }
 }
 
@@ -17,7 +18,7 @@ export default UserRoute
 
 // const errors = require('restify-errors');
 // const bcrypt = require('bcryptjs');
-// const jwt = require('jsonwebtoken');
+// const jwt = require('jsonwebtoken');
 // const config = require('../config');
 // const UserDao = require('../infra/user-dao');
 
