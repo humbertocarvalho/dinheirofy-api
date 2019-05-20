@@ -11,6 +11,7 @@ class UserRoute {
     const customerController = new UserController()
     this.restify.post('/user/register', customerController.registrar)
     this.restify.post('/user/auth', customerController.auth)
+    this.restify.get('/user/exists/:userName', customerController.existe)
   }
 }
 

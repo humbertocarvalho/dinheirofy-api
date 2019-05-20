@@ -55,5 +55,12 @@ class UserController {
       return res.send(new errors.UnauthorizedError())
     }
   }
+
+  public async existe (req:Request, res:Response, next:Next):Promise<Response> {
+    const user = await new UserDao().findByUsername(req.params.userName)
+    next()
+    return res.json(!!user)
+  }
 }
+
 export default UserController
