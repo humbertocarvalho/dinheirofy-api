@@ -3,6 +3,7 @@ require('dotenv').config({
 });
 
 const express = require('express');
+const cors = require('cors');
 
 class AppController {
   constructor() {
@@ -13,6 +14,11 @@ class AppController {
   }
 
   middlewares() {
+    const corsOptions = {
+      exposedHeaders: ['x-access-token']
+    };
+
+    this.express.use(cors(corsOptions));
     this.express.use(express.json());
   }
 
