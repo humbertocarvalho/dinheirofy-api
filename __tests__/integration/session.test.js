@@ -53,6 +53,21 @@ describe('Authentication', () => {
     expect(response.body).toHaveProperty('token');
   });
 
+  it('shouldnt authencicated with invalid email', async () => {
+    const user = await factory.create('User', {
+      password: '123123'
+    });
+
+    const response = await request(app)
+      .post('/sessions')
+      .send({
+        email: 'leozer@email.com',
+        password: '123123'
+      });
+
+    expect(response.status).toBe(401);
+  });
+
   it('should access private routes when authenticated', async () => {
     const user = await factory.create('User', {
       password: '123123'
