@@ -1,44 +1,33 @@
 {
-  "name": "my-api",
+  "name": "courses-nodejstdd",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
+  "repository": "https://github.com/humbertocarvalho/courses-nodejstdd.git",
+  "author": "Humberto de Carvalho <hvcarvalhobrt@gmail.com>",
+  "license": "MIT",
   "scripts": {
-    "dev": "nodemon src/index.ts",
-    "prebuild": "rimraf dist",
-    "build": "sucrase ./src -d ./dist --transforms typescript,imports"
+    "dev": "nodemon src/server.js --ignore __tests__",
+    "start": "node src/server.js",
+    "pretest": "NODE_ENV=test sequelize db:migrate",
+    "test": "NODE_ENV=test jest",
+    "posttest": "NODE_ENV=test sequelize db:migrate:undo:all"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
+    "@types/jest": "^24.0.13",
     "bcryptjs": "^2.4.3",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.0",
+    "factory-girl": "^5.0.4",
+    "faker": "^4.1.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.5.5",
-    "mongoose-timestamp": "^0.6.0",
-    "restify": "^8.3.1",
-    "restify-cors-middleware": "^1.1.1",
-    "restify-errors": "^7.0.0",
-    "restify-jwt-community": "^1.0.12"
+    "pg": "^7.11.0",
+    "sequelize": "^5.8.6"
   },
   "devDependencies": {
-    "@types/bcryptjs": "^2.4.2",
-    "@types/jsonwebtoken": "^8.3.2",
-    "@types/mongoose": "^5.5.0",
-    "@types/restify": "^7.2.10",
-    "@types/restify-errors": "^4.3.3",
-    "@typescript-eslint/eslint-plugin": "^1.8.0",
-    "@typescript-eslint/parser": "^1.8.0",
-    "eslint": "^5.15.3",
-    "eslint-config-prettier": "^4.1.0",
-    "eslint-config-standard": "^12.0.0",
-    "eslint-plugin-import": "^2.16.0",
-    "eslint-plugin-node": "^8.0.1",
-    "eslint-plugin-prettier": "^3.0.1",
-    "eslint-plugin-promise": "^4.0.1",
-    "eslint-plugin-standard": "^4.0.0",
+    "jest": "^24.8.0",
     "nodemon": "^1.19.0",
-    "sucrase": "^3.10.1",
-    "typescript": "^3.4.5"
+    "sequelize-cli": "^5.4.0",
+    "sqlite3": "^4.0.8",
+    "supertest": "^4.0.2"
   }
 }
