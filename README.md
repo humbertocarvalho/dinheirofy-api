@@ -4,9 +4,12 @@
 
 ## To install all dependencies
 
-`npm install`
+`yarn install`
+
+## To run the tests
+
+`yarn test`
 
 ## To run the project
 
-`npm run dev`
-
+`yarn dev`
