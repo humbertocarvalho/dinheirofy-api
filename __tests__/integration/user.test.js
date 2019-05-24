@@ -5,6 +5,7 @@ const factory = require('../factories');
 
 describe('Register', () => {
   beforeEach(async () => {
+    console.log('for each');
     await truncate();
   });
 
@@ -14,7 +15,9 @@ describe('Register', () => {
     const response = await request(app)
       .post('/user/register')
       .send({
-        user
+        name: user.name,
+        email: user.email,
+        password: user.password
       });
 
     expect(response.status).toBe(200);
@@ -36,9 +39,21 @@ describe('Register', () => {
     const response = await request(app)
       .post('/user/register')
       .send({
-        user
+        name: user.name,
+        email: user.email,
+        password: user.password
       });
 
-    expect(response.header).toHaveProperty('token');
+    expect(response.body).toHaveProperty('x-access-token');
+  });
+
+  it('shouldnt return a JWT Token when register with success', async () => {
+    const user = await factory.create('User');
+
+    const response = await request(app)
+      .post('/user/register')
+      .send({});
+
+    expect(response.body).not.toHaveProperty('token');
   });
 });

@@ -4,6 +4,10 @@ const authMiddlewares = require('../middleware/auth');
 
 const SessionController = require('../controllers/SessionController');
 
+const userRoutes = require('./user.routes');
+
+routes.use(userRoutes);
+
 routes.post('/sessions', SessionController.store);
 
 routes.use(authMiddlewares);
