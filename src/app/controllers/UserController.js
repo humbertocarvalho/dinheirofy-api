@@ -13,7 +13,7 @@ class UserController {
     if (findUser) {
       return res
         .status(200)
-        .json({ message: 'This email is already registred' });
+        .json({ message: 'This email is already registered' });
     }
 
     const user = await User.create({
