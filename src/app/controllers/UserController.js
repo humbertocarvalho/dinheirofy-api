@@ -24,6 +24,14 @@ class UserController {
 
     return res.json({ user, token: user.generateToken() });
   }
+
+  async exists(req, res) {
+    const { email } = req.params;
+
+    const user = await User.findOne({ where: { email } });
+
+    return res.json(!!user);
+  }
 }
 
 module.exports = new UserController();
