@@ -71,4 +71,42 @@ describe('Register', () => {
 
     expect(response.body).toHaveProperty('message');
   });
+
+  it('should return true when the username has been already taken', async () => {
+    const name = faker.name.findName();
+    const email = faker.internet.email();
+    const password = faker.internet.password();
+
+    let response = await request(app)
+      .post('/user/register')
+      .send({
+        name,
+        email,
+        password
+      });
+
+    response = await request(app).get('/user/exists/' + email);
+
+    expect(response.body).not.toBeNull();
+  });
+
+  it('should return null when the username hasnt been taken', async () => {
+    const name = faker.name.findName();
+    const email = faker.internet.email();
+    const password = faker.internet.password();
+
+    let response = await request(app)
+      .post('/user/register')
+      .send({
+        name,
+        email,
+        password
+      });
+
+    response = await request(app).get(
+      '/user/exists/' + faker.internet.email('example')
+    );
+
+    expect(response.body).toBeFalsy();
+  });
 });
