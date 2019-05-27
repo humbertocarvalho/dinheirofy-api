@@ -1,4 +1,4 @@
-# Dinheirofy Api
+# Dinheirofy API
 
 # API for Dinheirofy project
 
