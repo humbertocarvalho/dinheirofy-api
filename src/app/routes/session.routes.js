@@ -3,7 +3,7 @@ const authMiddlewares = require('../middleware/auth');
 
 const SessionController = require('../controllers/SessionController');
 
-routes.post('/sessions', SessionController.auth);
+routes.post('/session/auth', SessionController.auth);
 routes.get('/dashboard', authMiddlewares, (req, res) => {
   return res.status(200).send();
 });

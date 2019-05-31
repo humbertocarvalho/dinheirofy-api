@@ -10,11 +10,13 @@ class SessionController {
       return res.status(401).json({ message: 'User not found' });
     }
 
+    console.log(password);
     if (!(await user.checkPassword(password))) {
       return res.status(401).json({ message: 'Wrong password' });
     }
 
-    return res.json({ user, token: user.generateToken() });
+    res.set('x-access-token', user.generateToken());
+    return res.json({ user });
   }
 }
 

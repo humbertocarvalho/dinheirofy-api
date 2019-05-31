@@ -36,8 +36,7 @@ describe('Register', () => {
         email: faker.internet.email(),
         password: faker.internet.password()
       });
-
-    expect(response.body).toHaveProperty('token');
+    expect(response.header).toHaveProperty('x-access-token');
   });
 
   it('shouldnt return a JWT Token when register without success', async () => {
@@ -45,7 +44,7 @@ describe('Register', () => {
       .post('/user/register')
       .send({});
 
-    expect(response.body).not.toHaveProperty('token');
+    expect(response.header).not.toHaveProperty('x-access-token');
   });
 
   it('should return an error message when the email has been already registered', async () => {

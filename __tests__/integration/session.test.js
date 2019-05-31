@@ -14,7 +14,7 @@ describe('Authentication', () => {
     });
 
     const response = await request(app)
-      .post('/sessions')
+      .post('/session/auth')
       .send({
         email: user.email,
         password: '123123'
@@ -29,7 +29,7 @@ describe('Authentication', () => {
     });
 
     const response = await request(app)
-      .post('/sessions')
+      .post('/session/auth')
       .send({
         email: user.email,
         password: '12312'
@@ -44,13 +44,13 @@ describe('Authentication', () => {
     });
 
     const response = await request(app)
-      .post('/sessions')
+      .post('/session/auth')
       .send({
         email: user.email,
         password: '123123'
       });
 
-    expect(response.body).toHaveProperty('token');
+    expect(response.header).toHaveProperty('x-access-token');
   });
 
   it('shouldnt authencicated with invalid email', async () => {
@@ -59,7 +59,7 @@ describe('Authentication', () => {
     });
 
     const response = await request(app)
-      .post('/sessions')
+      .post('/session/auth')
       .send({
         email: 'leozer@email.com',
         password: '123123'

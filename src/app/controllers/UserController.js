@@ -21,8 +21,8 @@ class UserController {
       email,
       password
     });
-
-    return res.json({ user, token: user.generateToken() });
+    res.set('x-access-token', user.generateToken());
+    return res.json({ user });
   }
 
   async exists(req, res) {
