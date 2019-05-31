@@ -88,9 +88,7 @@ typings/
 # DynamoDB Local files
 .dynamodb/
 
-# Config Files
-config.js
-senha.txt
-
-
 # End of https://www.gitignore.io/api/node
+.vscode/settings.json
+
+__tests__/database.sqlite
