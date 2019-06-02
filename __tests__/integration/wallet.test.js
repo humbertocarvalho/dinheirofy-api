@@ -1,6 +1,7 @@
 const request = require('supertest');
 const app = require('../../src/app');
 const truncate = require('../utils/truncate');
+const faker = require('faker');
 
 describe('Create wallet', () => {
   beforeEach(async () => {
@@ -8,7 +9,7 @@ describe('Create wallet', () => {
   });
 
   it('should create a wallet with valid userId', async () => {
-    const response = await request(app)
+    let response = await request(app)
       .post('/user/register')
       .send({
         name: faker.name.findName(),
@@ -18,7 +19,7 @@ describe('Create wallet', () => {
 
     const { id: userId } = response.body;
 
-    const response = await request(app)
+    response = await request(app)
       .post('/wallet')
       .send({
         description: 'Wallet 1',
@@ -45,7 +46,8 @@ describe('Create wallet', () => {
     const response = await request(app)
       .post('/wallet')
       .send({
-        description: 'Wallet 1'
+        description: 'Wallet 1',
+        userId: null
       });
 
     expect(response.status).toBe(401);
