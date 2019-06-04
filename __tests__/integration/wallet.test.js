@@ -17,7 +17,7 @@ describe('Create wallet', () => {
         password: faker.internet.password()
       });
 
-    const { id: userId } = response.body;
+    const { id: userId } = response.body.user;
 
     response = await request(app)
       .post('/wallet')

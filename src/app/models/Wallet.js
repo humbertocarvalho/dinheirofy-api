@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   Wallet.associate = models => {
-    Wallet.belongsTo(models.User);
+    Wallet.belongsTo(models.User, { constraints: true });
   };
 
   return Wallet;
