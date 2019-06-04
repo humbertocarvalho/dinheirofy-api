@@ -67,38 +67,4 @@ describe('Authentication', () => {
 
     expect(response.status).toBe(401);
   });
-
-  it('should access private routes when authenticated', async () => {
-    const user = await factory.create('User', {
-      password: '123123'
-    });
-
-    const response = await request(app)
-      .get('/dashboard')
-      .set('Authorization', `Bearer ${user.generateToken()}`);
-
-    expect(response.status).toBe(200);
-  });
-
-  it('shouldnt access private routes without jwt token', async () => {
-    const user = await factory.create('User', {
-      password: '123123'
-    });
-
-    const response = await request(app).get('/dashboard');
-
-    expect(response.status).toBe(401);
-  });
-
-  it('shouldnt access private routes with a invalid token', async () => {
-    const user = await factory.create('User', {
-      password: '123123'
-    });
-
-    const response = await request(app)
-      .get('/dashboard')
-      .set('Authorization', `Bearer 123456`);
-
-    expect(response.status).toBe(401);
-  });
 });
