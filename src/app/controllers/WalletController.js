@@ -5,6 +5,7 @@ class WalletController {
   async create(req, res) {
     const { description, userId } = req.body;
 
+    console.log(req.body);
     if (!description || !userId) {
       return res.status(401).json({ message: 'Invalid inputs' });
     }
@@ -48,11 +49,11 @@ class WalletController {
 
     const wallets = await Wallet.findAll({
       where: {
-        userId
+        user_id: userId
       }
     });
 
-    return res.json(wallets.toJSON());
+    return res.json(wallets);
   }
 
   async delete(req, res) {}
