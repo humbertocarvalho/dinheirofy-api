@@ -3,7 +3,7 @@ const WalletController = require('../controllers/WalletController');
 
 routes.get('/wallet/:userId', WalletController.get);
 routes.post('/wallet', WalletController.create);
-routes.put('/wallet', WalletController.update);
+routes.put('/wallet/:walletId', WalletController.update);
 routes.delete('/wallet', WalletController.delete);
 
 module.exports = routes;
