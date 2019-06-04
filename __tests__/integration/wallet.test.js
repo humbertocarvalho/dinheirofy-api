@@ -53,3 +53,9 @@ describe('Create wallet', () => {
     expect(response.status).toBe(401);
   });
 });
+
+describe('Update wallet', () => {});
+
+describe('Get Wallet', () => {});
+
+describe('Delete wallet', () => {});
