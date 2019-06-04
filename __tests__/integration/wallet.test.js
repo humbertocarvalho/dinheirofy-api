@@ -2,6 +2,7 @@ const request = require('supertest');
 const app = require('../../src/app');
 const truncate = require('../utils/truncate');
 const faker = require('faker');
+const factory = require('../factories');
 
 describe('Create wallet', () => {
   beforeEach(async () => {
@@ -54,8 +55,31 @@ describe('Create wallet', () => {
   });
 });
 
-describe('Update wallet', () => {});
+describe('Update wallet', () => {
+  beforeEach(async () => {
+    await truncate();
+  });
 
-describe('Get Wallet', () => {});
+  it('should update the wallet description', async () => {
+    const user = await factory.create('User');
 
-describe('Delete wallet', () => {});
+    let response = await request(app)
+      .post('/wallet')
+      .send({
+        description: 'Wallet 2',
+        userId: user.id
+      });
+  });
+});
+
+describe('Get Wallet', () => {
+  beforeEach(async () => {
+    await truncate();
+  });
+});
+
+describe('Delete wallet', () => {
+  beforeEach(async () => {
+    await truncate();
+  });
+});
