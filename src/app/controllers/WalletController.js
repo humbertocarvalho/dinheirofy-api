@@ -28,12 +28,19 @@ class WalletController {
 
   async update(req, res) {
     const { description } = req.body;
+    const { walletId } = req.params;
 
     if (!description) {
       return res
         .status(401)
         .json({ message: 'Could not update description to null' });
     }
+
+    const wallet = await Wallet.findByPk(walletId);
+
+    const rowsUpdate = await wallet.update({ description });
+
+    return res.json(wallet);
   }
 
   async get(req, res) {
