@@ -38,7 +38,7 @@ class WalletController {
 
     const wallet = await Wallet.findByPk(walletId);
 
-    const rowsUpdate = await wallet.update({ description });
+    await wallet.update({ description });
 
     return res.json(wallet);
   }
@@ -63,7 +63,15 @@ class WalletController {
     return res.json(wallets);
   }
 
-  async delete(req, res) {}
+  async delete(req, res) {
+    const { walletId } = req.params;
+
+    await Wallet.destroy({
+      where: { id: walletId }
+    });
+
+    return res.status(200).json({ message: 'Wallet was deleted succesfuly' });
+  }
 }
 
 module.exports = new WalletController();
