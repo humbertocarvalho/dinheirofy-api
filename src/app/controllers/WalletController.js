@@ -20,7 +20,7 @@ class WalletController {
 
     const wallet = await Wallet.create({
       description,
-      userId
+      UserId: userId
     });
 
     return res.json({ wallet });
