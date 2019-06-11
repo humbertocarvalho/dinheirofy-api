@@ -9,20 +9,7 @@ import { UserController } from './user/user.controller';
 import { UserService } from './user/user.service';
 
 @Module({
-  imports: [
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: 'docker',
-      database: 'postgres',
-      entities: [join(__dirname, '**/**.entity{.ts,.js}')],
-      synchronize: true,
-    }),
-    PhotoModule,
-    AuthModule,
-  ],
+  imports: [TypeOrmModule.forRoot(), PhotoModule, AuthModule],
   controllers: [WalletController, UserController],
   providers: [WalletService, UserService],
 })
