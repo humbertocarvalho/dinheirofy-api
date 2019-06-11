@@ -5,6 +5,8 @@ import { PhotoModule } from './photo/photo.module';
 import { AuthModule } from './auth/auth.module';
 import { WalletController } from './wallet/wallet.controller';
 import { WalletService } from './wallet/wallet.service';
+import { UserController } from './user/user.controller';
+import { UserService } from './user/user.service';
 
 @Module({
   imports: [
@@ -21,7 +23,7 @@ import { WalletService } from './wallet/wallet.service';
     PhotoModule,
     AuthModule,
   ],
-  controllers: [WalletController],
-  providers: [WalletService],
+  controllers: [WalletController, UserController],
+  providers: [WalletService, UserService],
 })
 export class AppModule {}
