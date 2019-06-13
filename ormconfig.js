@@ -17,12 +17,12 @@ const config = {
 
 module.exports = {
   ...config,
-  host: 'localhost',
-  port: 5432,
-  username: 'postgres',
-  password: 'docker',
-  database: 'postgres',
-  synchronize: false,
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  username: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
+  synchronize: true,
   migrationsRun: false,
   dropSchema: false,
   logging: true,
