@@ -10,7 +10,7 @@ export class PhotoController {
 
   @Get('/:id')
   findOne(): string {
-    return 'teste';
+    return 'porr';
   }
 
   @Get()

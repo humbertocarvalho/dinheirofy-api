@@ -25,7 +25,7 @@ module.exports = {
   synchronize: true,
   migrationsRun: false,
   dropSchema: false,
-  logging: true,
+  logging: false,
   entities: [`${BASE_DIR}/**/*.entity.{ts,js}`],
   migrations: [`${BASE_DIR}/db/migrations/**/*.{ts,js}`],
   subscribers: [`${BASE_DIR}/db/subscribers/*.{ts,js}`],
