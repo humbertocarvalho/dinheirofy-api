@@ -1,15 +1,35 @@
-# Dinheirofy API
+## Description
 
-# API for Dinheirofy project
+API
 
-## To install all dependencies
+## Installation
 
-`yarn install`
+```bash
+$ npm install
+```
 
-## To run the tests
+## Running the app
 
-`yarn test`
+```bash
+# development
+$ npm run start
 
-## To run the project
+# watch mode
+$ npm run start:dev
 
-`yarn dev`
+# production mode
+$ npm run start:prod
+```
+
+## Test
+
+```bash
+# unit tests
+$ npm run test
+
+# e2e tests
+$ npm run test:e2e
+
+# test coverage
+$ npm run test:cov
+```

@@ -1,0 +1,14 @@
+{
+  "sqltools.connections": [
+    {
+      "connectionTimeout": 30,
+      "database": "postgres",
+      "dialect": "PostgreSQL",
+      "name": "Dinheirofy",
+      "password": "docker",
+      "port": 5432,
+      "server": "127.0.0.1",
+      "username": "postgres"
+    }
+  ]
+}
