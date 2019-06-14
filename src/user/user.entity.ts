@@ -40,7 +40,7 @@ export class User {
 
   @BeforeInsert()
   hashPassword() {
-    console.log('aqui chegou para inserir');
-    this.password = crypto.createHmac('sha256', this.password).digest('hex');
+    // this.password = crypto.createHmac('sha256', this.password).digest('hex');
+    this.password = 'polenta';
   }
 }
