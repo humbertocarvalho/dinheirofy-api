@@ -23,11 +23,6 @@ export class User {
   @Column({ length: 500 })
   email: string;
 
-  @Column({
-    name: 'password',
-  })
-  password: string;
-
   @CreateDateColumn({
     name: 'created_at',
   })
@@ -40,7 +35,8 @@ export class User {
 
   @BeforeInsert()
   hashPassword() {
-    // this.password = crypto.createHmac('sha256', this.password).digest('hex');
-    this.password = 'polenta';
+    this.password = crypto.createHmac('sha256', this.password).digest('hex');
   }
+  @Column()
+  password: string;
 }
