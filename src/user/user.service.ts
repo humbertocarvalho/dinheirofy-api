@@ -9,4 +9,8 @@ export class UserService {
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
   ) {}
+
+  async create(user: User) {
+    return await this.userRepository.insert(user);
+  }
 }

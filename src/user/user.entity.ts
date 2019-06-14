@@ -4,7 +4,9 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  BeforeInsert,
 } from 'typeorm';
+import * as crypto from 'crypto';
 
 @Entity({
   name: 'users',
@@ -22,9 +24,9 @@ export class User {
   email: string;
 
   @Column({
-    name: 'password_hash',
+    name: 'password',
   })
-  passwordHash: string;
+  password: string;
 
   @CreateDateColumn({
     name: 'created_at',
@@ -35,4 +37,10 @@ export class User {
     name: 'updated_at',
   })
   updatedAt: string;
+
+  @BeforeInsert()
+  hashPassword() {
+    console.log('aqui chegou para inserir');
+    this.password = crypto.createHmac('sha256', this.password).digest('hex');
+  }
 }
