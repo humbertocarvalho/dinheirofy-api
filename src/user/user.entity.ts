@@ -6,9 +6,13 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity()
+@Entity({
+  name: 'users',
+})
 export class User {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({
+    name: 'user_id',
+  })
   id: number;
 
   @Column({ length: 500 })
@@ -17,12 +21,18 @@ export class User {
   @Column({ length: 500 })
   email: string;
 
-  @Column('')
+  @Column({
+    name: 'password_hash',
+  })
   passwordHash: string;
 
-  @CreateDateColumn('')
+  @CreateDateColumn({
+    name: 'created_at',
+  })
   createdAt: string;
 
-  @UpdateDateColumn('')
+  @UpdateDateColumn({
+    name: 'updated_at',
+  })
   updatedAt: string;
 }
