@@ -2,7 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { User } from './user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CreateUserDto } from './create-user.dto';
+import { CreateUserDto } from './dto/create-user.dto';
+import { IUser } from './interfaces/user.interface';
 import * as crypto from 'crypto';
 
 @Injectable()
@@ -20,5 +21,13 @@ export class UserService {
         .digest('hex'),
       email: createUserDto.email,
     });
+  }
+
+  async findByEmail(email: string, password: string) {
+    return await this.userRepository.findOne({ email, password });
+  }
+
+  async findOne(user: IUser) {
+    return await this.userRepository.findOne(user.id);
   }
 }
