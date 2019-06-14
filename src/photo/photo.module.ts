@@ -3,7 +3,6 @@ import { PhotoService } from './photo.service';
 import { PhotoController } from './photo.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Photo } from './photo.entity';
-import { AuthModule } from '../auth/auth.module';
 import { PassportModule } from '@nestjs/passport';
 
 @Module({
