@@ -3,8 +3,6 @@ const url = require('url');
 const BASE_DIR = process.env.NODE_ENV === 'production' ? 'dist' : 'src';
 const DB_URL = process.env.DB_URL || 'postgres';
 
-const { protocol, pathname } = url.parse(DB_URL, true);
-
 const config = {
   type: 'postgres',
 };
