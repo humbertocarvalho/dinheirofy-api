@@ -8,8 +8,9 @@ import { exists } from 'fs';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Post()
+  @Post('/register')
   create(@Body() createUserDto: CreateUserDto): Promise<any> {
+    console.log(createUserDto);
     return this.userService.create(createUserDto);
   }
 
