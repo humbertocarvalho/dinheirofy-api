@@ -1,4 +1,4 @@
-import { Controller, Get, UseGuards, Body } from '@nestjs/common';
+import { Controller, Get, UseGuards, Body, Post } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth.service';
 import { UserService } from '../user/user.service';
@@ -11,14 +11,18 @@ export class AuthController {
     private readonly userService: UserService,
   ) {}
 
-  @Get('token')
+  @Post('token')
   async createToken(@Body() authUserDto: AuthUserDto): Promise<any> {
     const user = await this.userService.findByEmail(
       authUserDto.email,
       authUserDto.password,
     );
 
-    return await this.authService.createToken(user);
+    if (user) {
+      return await this.authService.createToken(user);
+    }
+
+    return 'User not found';
   }
 
   @Get('data')

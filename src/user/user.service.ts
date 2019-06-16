@@ -14,13 +14,14 @@ export class UserService {
   ) {}
 
   async create(createUserDto: CreateUserDto) {
-    return await this.userRepository.save({
-      name: createUserDto.name,
-      password: crypto
-        .createHmac('sha256', createUserDto.password)
-        .digest('hex'),
-      email: createUserDto.email,
-    });
+    return await this.userRepository.save(createUserDto);
+    // return await this.userRepository.save({
+    //   name: createUserDto.name,
+    //   password: crypto
+    //     .createHmac('sha256', createUserDto.password)
+    //     .digest('hex'),
+    //   email: createUserDto.email,
+    // });
   }
 
   async findByEmail(email: string, password: string) {
