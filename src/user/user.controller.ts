@@ -1,6 +1,7 @@
-import { Controller, Post, Body, Get } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
+import { exists } from 'fs';
 
 @Controller('user')
 // @UseGuards(AuthGuard())
@@ -10,5 +11,11 @@ export class UserController {
   @Post()
   create(@Body() createUserDto: CreateUserDto): Promise<any> {
     return this.userService.create(createUserDto);
+  }
+
+  @Get('/exists/:email')
+  async exists(@Param('email') email: string): Promise<boolean> {
+    const user = await this.userService.findEmail(email);
+    return !!user;
   }
 }
