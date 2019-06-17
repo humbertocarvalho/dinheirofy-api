@@ -10,7 +10,7 @@ export class UserController {
 
   @Post('/register')
   create(@Body() createUserDto: CreateUserDto): Promise<any> {
-    console.log(createUserDto);
+    //console.log(createUserDto);
     return this.userService.create(createUserDto);
   }
 
