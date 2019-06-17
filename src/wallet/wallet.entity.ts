@@ -5,7 +5,11 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   BeforeInsert,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
+
+import { User } from '../user/user.entity';
 
 @Entity({
   name: 'wallet',
@@ -28,4 +32,8 @@ export class Wallet {
     name: 'updated_at',
   })
   updatedAt: string;
+
+  @ManyToOne(type => User, user => user.photos)
+  @JoinColumn({ name: 'wallet_user_id' })
+  user: User;
 }
