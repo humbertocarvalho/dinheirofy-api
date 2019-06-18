@@ -5,10 +5,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   BeforeInsert,
-  OneToMany,
 } from 'typeorm';
-
-import { Wallet } from '../wallet/wallet.entity';
 
 @Entity({
   name: 'users',
@@ -37,7 +34,4 @@ export class User {
 
   @Column()
   password: string;
-
-  @OneToMany(type => Wallet, wallet => wallet.user)
-  photos: Wallet[];
 }
