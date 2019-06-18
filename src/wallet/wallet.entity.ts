@@ -15,22 +15,16 @@ import { User } from '../user/user.entity';
   name: 'wallet',
 })
 export class Wallet {
-  @PrimaryGeneratedColumn({
-    name: 'wallet_id',
-  })
+  @PrimaryGeneratedColumn({ name: 'wallet_id' })
   id: number;
 
   @Column({ length: 500 })
   description: string;
 
-  @CreateDateColumn({
-    name: 'created_at',
-  })
+  @CreateDateColumn({ name: 'created_at' })
   createdAt: string;
 
-  @UpdateDateColumn({
-    name: 'updated_at',
-  })
+  @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: string;
 
   @ManyToOne(type => User, user => user.photos)
