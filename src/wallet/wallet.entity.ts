@@ -5,25 +5,23 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   BeforeInsert,
-  OneToMany,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
 
-import { Wallet } from '../wallet/wallet.entity';
+import { User } from '../user/user.entity';
 
 @Entity({
-  name: 'users',
+  name: 'wallet',
 })
-export class User {
+export class Wallet {
   @PrimaryGeneratedColumn({
-    name: 'user_id',
+    name: 'wallet_id',
   })
   id: number;
 
   @Column({ length: 500 })
-  name: string;
-
-  @Column({ length: 500 })
-  email: string;
+  description: string;
 
   @CreateDateColumn({
     name: 'created_at',
@@ -35,9 +33,7 @@ export class User {
   })
   updatedAt: string;
 
-  @Column()
-  password: string;
-
-  @OneToMany(type => Wallet, wallet => wallet.user)
-  photos: Wallet[];
+  @ManyToOne(type => User, user => user.photos)
+  @JoinColumn({ name: 'wallet_user_id' })
+  user: User;
 }
