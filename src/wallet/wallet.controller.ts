@@ -1,4 +1,12 @@
-import { Controller, Post, Body, Get, Put } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Get,
+  Put,
+  Delete,
+  Param,
+} from '@nestjs/common';
 import { CreateWalletDto } from './dto/create-wallet.dto';
 import { WalletService } from './wallet.service';
 import { UpdateWalletDto } from './dto/update-wallet.dto';
@@ -10,10 +18,25 @@ export class WalletController {
   @Post()
   create(@Body() createWalletDto: CreateWalletDto) {
     const wallet = this.walletService.create(createWalletDto);
-    console.log(wallet);
     return wallet;
   }
 
-  @Put()
-  update(@Body() updateWalletDTO: UpdateWalletDto) {}
+  @Put('/:walletId')
+  update(
+    @Param('walletId') walletId: number,
+    @Body() updateWalletDTO: UpdateWalletDto,
+  ) {
+    return this.walletService.update(walletId, updateWalletDTO);
+  }
+
+  @Delete('/:walletId')
+  delete(@Param('walletId') walletId: number) {
+    return this.walletService.delete(walletId);
+  }
+
+  @Get()
+  async get() {
+    const wallet = await this.walletService.get();
+    return this.walletService.get();
+  }
 }
