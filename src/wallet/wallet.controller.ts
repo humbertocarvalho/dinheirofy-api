@@ -35,8 +35,8 @@ export class WalletController {
   }
 
   @Get()
-  async get() {
-    const wallet = await this.walletService.get();
-    return this.walletService.get();
+  async findAll() {
+    const wallet = await this.walletService.findAll();
+    return this.walletService.findAll();
   }
 }

@@ -31,7 +31,7 @@ export class WalletService {
     return this.walletRepository.delete({ id: walletId });
   }
 
-  async get() {
+  async findAll() {
     return this.walletRepository.find();
   }
 }
