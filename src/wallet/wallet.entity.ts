@@ -4,17 +4,16 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  BeforeInsert,
   ManyToOne,
   JoinColumn,
+  BaseEntity,
 } from 'typeorm';
-
-import { User } from '../user/user.entity';
+import { User } from '../auth/user.entity';
 
 @Entity({
   name: 'wallet',
 })
-export class Wallet {
+export class Wallet extends BaseEntity {
   @PrimaryGeneratedColumn({
     name: 'wallet_id',
   })
@@ -33,7 +32,7 @@ export class Wallet {
   })
   updatedAt: string;
 
-  @ManyToOne(type => User, user => user.photos)
+  @ManyToOne(type => User, user => user.wallets)
   @JoinColumn({ name: 'wallet_user_id' })
   user: User;
 }

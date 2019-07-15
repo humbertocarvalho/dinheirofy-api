@@ -1,4 +1,6 @@
+import { IsNotEmpty } from 'class-validator';
+
 export class CreateWalletDto {
-  readonly description: string;
-  readonly userId: number;
+  @IsNotEmpty()
+  description: string;
 }

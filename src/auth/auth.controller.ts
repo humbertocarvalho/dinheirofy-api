@@ -1,34 +1,29 @@
-import { Controller, Get, UseGuards, Body, Post } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
+import {
+  Controller,
+  Post,
+  Body,
+  ValidationPipe,
+  UseGuards,
+  Req,
+} from '@nestjs/common';
+import { AuthCredentialsDto } from './dto/auth-credentials.dto';
 import { AuthService } from './auth.service';
-import { UserService } from '../user/user.service';
-import { AuthUserDto } from './dto/auth-user.dto';
 
 @Controller('auth')
 export class AuthController {
-  constructor(
-    private readonly authService: AuthService,
-    private readonly userService: UserService,
-  ) {}
+  constructor(private authService: AuthService) {}
 
-  @Post('token')
-  async createToken(@Body() authUserDto: AuthUserDto): Promise<any> {
-    const user = await this.userService.findByEmail(
-      authUserDto.email,
-      authUserDto.password,
-    );
-
-    if (user) {
-      return await this.authService.createToken(user);
-    }
-
-    return 'User not found';
+  @Post('/signup')
+  signUp(
+    @Body(ValidationPipe) authCredentialsDto: AuthCredentialsDto,
+  ): Promise<void> {
+    return this.authService.signUp(authCredentialsDto);
   }
 
-  @Get('data')
-  @UseGuards(AuthGuard())
-  findAll() {
-    // this route is restricted by AuthGuard
-    // JWT strategy
+  @Post('/signin')
+  signIn(
+    @Body(ValidationPipe) authCredentialsDto: AuthCredentialsDto,
+  ): Promise<{ accessToken: string }> {
+    return this.authService.signIn(authCredentialsDto);
   }
 }
